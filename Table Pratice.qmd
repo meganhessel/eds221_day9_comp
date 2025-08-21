@@ -1,0 +1,39 @@
+---
+title: "Table pratice"
+format: html
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r}
+#| echo: false
+
+whale_sightings <- tibble::tribble(
+                             ~date,     ~site,       ~spp, ~dist_m, ~behavior,
+                       "8/12/2014", "channel",  "unknown",    400L,  "breach",
+                       "8/13/2014", "channel",     "gray",    200L,   "spout",
+                       "8/15/2014",  "harbor",     "gray",     60L,   "spout",
+                       "8/16/2014", "channel", "humpback",    300L, "feeding",
+                       "8/16/2014", "channel",     "gray",    150L, "feeding"
+                       )
+
+whale_sightings %>% 
+  kable(col.names = c("Date", 
+                      "Site", 
+                      "Species", 
+                      "Distance (m)", 
+                      "Behavior")) %>% 
+  kable_classic() %>% 
+  column_spec(1, bold = TRUE, background = "yellow") %>% 
+  column_spec(2, italic = TRUE, background = "orange") %>% 
+  add_header_above(c(" " = 1, "One header" = 2, "Another header" = 2)) %>% 
+  scroll_box(height = "300px", width = "700px")
+
+
+```
